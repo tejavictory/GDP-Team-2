@@ -4,10 +4,13 @@
 
 **Sai Krishna Teja Kancharla**
 - **Github Username:** tejavictory
-- **Github Link:** github.com/tejavictory
+- **Github Link:** https://github.com/tejavictory
 - I can code in Python, Java, C, C#, HTML, Javascript. I made projects on .NET, Node.js and BCI using Arduino.
 
 **Mouni Krishna Atluri**
+- **Github username:** mounikrishna
+- **Github Link:** https://github.com/mounikrishna
+- **Strengths and Interests:** My strengths are java, c, .net , javascript , html and css. And my major interest in computing world is working with the cloud.
 
 **Mushafiq Fakki**
 
