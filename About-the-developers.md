@@ -15,7 +15,7 @@
 **Mushafiq Fakki**
 
 **Karthik Reddy Muthyala**
-**Github username:** karthikmuthyala
+- **Github username:** karthikmuthyala
 - **Github link:** https://github.com/karthikmuthyala
 - Interests in computing: I am good at Java,html,Css,node.js,javascript etc. 
 
