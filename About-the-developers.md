@@ -13,6 +13,9 @@
 - **Strengths and Interests:** My strengths are java, c, .net , javascript , html and css. And my major interest in computing world is working with the cloud.
 
 **Mushafiq Fakki**
+- **GitHub username:**  mushafiq
+- **GitHub Link:**  https://github.com/mushafiq
+- **Strengths and Interests:**  My strengths are java, C #.net, C++, javascript, html and css.I am interested in databases.
 
 **Karthik Reddy Muthyala**
 **Github username:** karthikmuthyala
