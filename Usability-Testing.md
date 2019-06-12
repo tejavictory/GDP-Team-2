@@ -1,4 +1,9 @@
 # Usability Testing
+-Planning 
+-Choosing participants
+-Performing tests
+-Analyzing results
+-Documentation recommendation
 
 ## Testing Tasks
 - Codewords should be unique
