@@ -1,6 +1,9 @@
 # Usability Testing
 
-## Testing Cases
+## Testing Tasks
+- Codewords should be unique
+- Instructors should only see the codeword assigned status.
+
 
 ## Roles
 - Student
