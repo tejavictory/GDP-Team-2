@@ -6,9 +6,8 @@
 - Documentation recommendation
 
 ## Testing Tasks
-- Codewords should be unique
-- Instructors should only see the codeword assigned status.
-- Codewords must expire.
+- Assignment of codewords to the students by the Instructor.
+- Setting Expiration time for codewords.
 
 
 ## Roles
