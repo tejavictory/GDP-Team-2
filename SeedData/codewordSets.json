@@ -2,13 +2,13 @@
     {
         "_id": 1,
         "codewordType": "LARGE",
-        "codewords": [],
+        "codewords": ["PROJECT","ELEPHANT","GIRAFFE","KANGAROO","AUSTRALIA","ACQUISITION","LEADERSHIP","COMMUNIST","REACTION","FLOWER"],
         "createdBy": 2  
     },
     {
         "_id": 2,
         "codewordType": "SMALL",
-        "codewords": [],
+        "codewords": ["ANGER","BRAVO","CANCER","DRAKE","EXTRA","FANCY","GINGER","HOTEL","IVORY","LEMON"],
         "createdBy": 1  
     }
 ]
