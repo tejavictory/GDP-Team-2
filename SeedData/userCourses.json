@@ -1,0 +1,32 @@
+[
+    {
+        "_id": 1,
+        "course_id": 1,
+        "user_id": 2,
+        "codeword":"HANSOLO"
+    },
+    {
+        "_id": 2,
+        "course_id": 3,
+        "user_id": 3,
+        "codeword":"CHEWBACCA"
+    },
+    {
+        "_id": 3,
+        "course_id": 2,
+        "user_id": 3,
+        "codeword":null
+    },
+    {
+        "_id": 4,
+        "course_id": 4,
+        "user_id": 3,
+        "codeword":"TESSERACT"
+    },
+    {
+        "_id": 5,
+        "course_id": 1,
+        "user_id": 3,
+        "codeword":"FALCON"
+    }
+]
