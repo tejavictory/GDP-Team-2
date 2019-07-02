@@ -30,5 +30,37 @@
         "firstName": "Steve",
         "lastName": "Rogers",
         "role_id": "1"
+    },
+    {
+        "_id": 5,
+        "email": "wayne@gmail.com",
+        "password": "sdf434asjkf21gu4is6dikbka",
+        "firstName": "Bruce",
+        "lastName": "Wayne",
+        "role_id": "3"
+    },
+    {
+        "_id": 6,
+        "email": "supes@gmail.com",
+        "password": "r734cr834r89u230r2c0n924cn",
+        "firstName": "Clarke",
+        "lastName": "Kent",
+        "role_id": "3"
+    },
+    {
+        "_id": 7,
+        "email": "barry@gmail.com",
+        "password": "ui2f4ync89ru4893u9n0r829n8",
+        "firstName": "Barry",
+        "lastName": "Allen",
+        "role_id": "3"
+    },
+    {
+        "_id": 8,
+        "email": "arthur@gmail.com",
+        "password": "894yt98r34cb8rucn02nc9cf",
+        "firstName": "Arthur",
+        "lastName": "Curry",
+        "role_id": "3"
     }
 ]
