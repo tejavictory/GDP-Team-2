@@ -45,5 +45,47 @@
 <script>
     import Notification from '@/components/Notification'
     export default {
+        name: 'LogInForm',
+        components: {
+            Notification
+        },
+        data () {
+            return {
+                email: '',
+                password: '',
+                notification: {
+                    message: '',
+                    type: ''
+                }
+            }
+        },
+        beforeRouteEnter (to, from, next) {
+            const token = localStorage.getItem('auth-token')
+            return token ? next('/') : next()
+        },
+        methods: {
+            login () {
+                axios
+                    .post('/login', {
+                        email: this.email,
+                        password: this.password,
+                    })
+                    .then(response => {
+                        // save token in localstorage
+                        localStorage.setItem('auth-token', response.data.data.token)
+                        // redirect to user home
+                        this.$router.push('/')
+                    })
+                    .catch(error => {
+                        // clear form inputs
+                        this.email = this.password = ''
+                        // display error notification
+                        this.notification = Object.assign({}, this.notification, {
+                            message: error.response.data.message,
+                            type: error.response.data.status
+                        })
+                    })
+            }
+        }
     }
 </script>
