@@ -41,3 +41,9 @@
   </div>
 </template>
 
+
+<script>
+    import Notification from '@/components/Notification'
+    export default {
+    }
+</script>
