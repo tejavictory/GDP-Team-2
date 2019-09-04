@@ -57,3 +57,60 @@
     </div>
   </div>
 </template>
+
+<script>
+import Notification from '@/components/Notification'
+export default {
+  name: 'SignUpForm',
+  components: {
+    Notification
+  },
+  data () {
+    return {
+      firstname: '',
+      lastname: '',
+      username: '',
+      email: '',
+      password: '',
+      notification: {
+        message: '',
+        type: ''
+      }
+    }
+  },
+  computed: {
+    isFormValid () {
+      return Object.keys(this.fields).every(key => this.fields[key].valid)
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    const token = localStorage.getItem('auth-token')
+    return token ? next('/') : next()
+  },
+  methods: {
+    signup () {
+      axios
+        .post('/signup', {
+          firstname: this.firstname,
+          lastname: this.lastname,
+          username: this.username,
+          email: this.email,
+          password: this.password
+        })
+        .then(response => {
+          // save token in localstorage
+          localStorage.setItem('auth-token', response.data.data.token)
+          // redirect to user home
+          this.$router.push('/')
+        })
+        .catch(error => {
+          // display error notification
+          this.notification = Object.assign({}, this.notification, {
+            message: error.response.data.message,
+            type: error.response.data.status
+          })
+        })
+    }
+  }
+}
+</script>
