@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import SignUpForm from '@/components/Auth/SignUpForm'
 import LogInForm from '@/components/Auth/LoginForm'
+import ResetPassword from '@/components/Auth/LoginForm'
 
 Vue.use(Router)
 
@@ -20,6 +21,10 @@ export default new Router({
     {
       path: '/login',
       component: LogInForm
+    },
+    {
+      path: '/resetpassword',
+      component: ResetPassword
     },
     {
       path: '/about',
