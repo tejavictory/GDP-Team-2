@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import SignUpForm from '@/components/Auth/SignUpForm'
-import LogInForm from '@/components/Auth/LoginForm'
+import LogInForm from '@/components/Auth/LogInForm'
 import ResetPassword from '@/components/Auth/LoginForm'
 
 Vue.use(Router)
