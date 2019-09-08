@@ -11,5 +11,17 @@
     </div>
 </template>
 
+<script>
+import InsCourse from './InsCourse.vue'
+import CourseModal from './CourseModal.vue'
+
+export default {
+    name: 'InsDash',
+    components: {
+        InsCourse,
+        CourseModal
+    }
+</script>
+
 
 
