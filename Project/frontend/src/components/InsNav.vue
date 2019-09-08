@@ -7,6 +7,18 @@
     Codeword App
 
   </div>
+  
+  <a class="item active" >
+
+          Instructor Dashboard
+
+    </a>
+
+    <a class="item" >
+
+      Student Dashboard
+
+    </a>
 
   <div class="right menu">
 
