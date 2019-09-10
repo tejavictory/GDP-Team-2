@@ -7,8 +7,8 @@
     Codeword App
 
   </div>
-  
-  <a class="item active" >
+
+    <a class="item active" >
 
           Instructor Dashboard
 
@@ -33,3 +33,33 @@
 </div>
 
 </template>
+
+ 
+
+<script>
+
+export default {
+
+  name: 'InsNav',
+
+  data() {
+
+    return {
+
+      activeItem: 'InsDash'
+
+    }
+
+  }
+
+}
+
+</script>
+
+ 
+
+<style scoped>
+
+ 
+
+</style>
