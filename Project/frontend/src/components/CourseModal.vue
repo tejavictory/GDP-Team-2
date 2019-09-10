@@ -107,4 +107,23 @@
             </div>
 
         </div>
+        <div class="actions">
+
+            <div class="ui black deny button">
+
+            Cancel
+
+            </div>
+
+            <div class="ui positive right labeled icon button">
+
+            Done
+
+            <i class="checkmark icon"></i>
+
+            </div>
+
+        </div>
+
+    </div>
 </template>
