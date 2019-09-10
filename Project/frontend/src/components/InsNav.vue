@@ -50,6 +50,28 @@ export default {
 
     }
 
+  },
+
+  components: {
+
+ 
+
+  },
+
+  methods: {
+
+    // setActive: function (menuItem) {
+
+    //   this.activeItem = menuItem
+
+    // },
+
+    // isActive: function (menuItem) {
+
+    //   return this.activeItem === menuItem
+
+    // }
+
   }
 
 }
