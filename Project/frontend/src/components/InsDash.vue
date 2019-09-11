@@ -20,8 +20,15 @@ export default {
     components: {
         InsCourse,
         CourseModal
+    },
+    methods: {
+        showModal: function() {
+            $('.ui.modal').modal('show')
+        }
     }
+}
 </script>
 
+<style scoped>
 
-
+</style>
