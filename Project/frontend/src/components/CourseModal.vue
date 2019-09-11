@@ -127,3 +127,48 @@
 
     </div>
 </template>
+<script>
+
+export default {
+
+    name: 'CourseModal',
+
+    methods: {
+
+        startdatepick: function () {
+
+            $('#startdate_calendar').calendar({type:'date'})
+
+        },
+
+        enddatepick: function () {
+
+            $('#enddate_calendar').calendar({type:'date'})
+
+        }
+
+    }
+
+}
+
+</script>
+
+ 
+
+<style scoped>
+
+    .ui.form{
+
+        padding: 20px;
+
+    }
+
+ 
+
+    .field{
+
+        padding: 10px;
+
+    }
+
+</style>
