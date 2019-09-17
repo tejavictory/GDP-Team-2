@@ -6,3 +6,18 @@
     </div>
     
 </template>
+<style scoped>
+
+    * {
+
+        background-color: black;
+
+        color: white;
+
+        padding: 6px;
+
+        text-align: center;
+
+    }
+
+</style>
