@@ -17,3 +17,46 @@
 </div>
 </div>
 </template>
+<script>
+
+export default {
+
+    name: 'AdminNav',
+
+    data() {
+
+        return { activeItem: 'codeword' }
+
+    },
+
+    methods: {
+
+        isActive: function (menuItem) {
+
+            return this.activeItem === menuItem
+
+        },
+
+        setActive: function (menuItem) {
+
+            this.activeItem = menuItem 
+
+            this.$root.$emit('AdminNavContent', menuItem)
+
+        }
+
+    }
+
+}
+
+</script>
+
+ 
+
+<style scoped>
+
+ .navhead{
+font-weight: bold
+}
+
+</style>
