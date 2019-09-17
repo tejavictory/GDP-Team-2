@@ -10,11 +10,11 @@
 
     * {
 
-        background-color: black;
+        background-color: white;
 
-        color: white;
+        color: black;
 
-        padding: 6px;
+        padding: 5px;
 
         text-align: center;
 
