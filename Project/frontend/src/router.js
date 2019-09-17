@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import SignUpForm from '@/components/Auth/SignUpForm'
 import LogInForm from '@/components/Auth/LogInForm'
 import ResetPassword from '@/components/Auth/ResetPassword'
+import InsDash from '@/components/InsDash'
 
 Vue.use(Router)
 
@@ -25,6 +26,10 @@ export default new Router({
     {
       path: '/resetpassword',
       component: ResetPassword
+    },
+    {
+      path: '/InsDash',
+      component: InsDash
     },
     {
       path: '/about',
