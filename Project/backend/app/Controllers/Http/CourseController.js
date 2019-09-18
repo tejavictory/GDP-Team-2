@@ -28,6 +28,18 @@ class CourseController {
           })
       }
 
+      async destroy({ request, response, params: { id } }) {
+        // await Course.find(request.input('name')).delete()
+        const course = await Course.find(id)
+        course.delete()
+        response.status(200).json({
+          message: 'Successfully deleted this course.',
+          data: course
+        })
+      }
+
+
+
 }
 
 module.exports = CourseController
