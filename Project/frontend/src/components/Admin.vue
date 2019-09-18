@@ -6,6 +6,10 @@
 </template>
 
 <script>
-
+import AdminNav from '@/components/AdminNav.vue'
+import InsReq from '@/components/InsReq.vue'
+import CodewordSets from '@/components/CodewordSets.vue'
+import RemoveCourses from '@/components/RemoveCourses.vue'
+import RemoveUsers from '@/components/RemoveUsers.vue'
 </script>
 
