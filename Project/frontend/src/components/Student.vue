@@ -39,3 +39,42 @@
 
     </div>
 </template>
+<script>
+
+import StuCourse from './StuCourse.vue'
+
+ 
+
+export default {
+
+    name: 'Student',
+
+    components: {
+
+        StuCourse
+
+    },
+
+    methods: {
+
+        logout () {
+
+            localStorage.removeItem('tweetr-token')
+
+            this.$router.push('/login')
+
+        }
+
+    }
+
+}
+
+</script>
+
+ 
+
+<style scoped>
+
+ 
+
+</style>
