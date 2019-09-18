@@ -37,7 +37,20 @@ class CourseController {
           data: course
         })
       }
-
+    
+      async show({ request, response, params: { id } }) {
+        const course = await Course.find(id)
+        
+        // const tags = await project.tags().fetch()
+    
+        // project.tags = tags
+    
+        response.status(200).json({
+          message: 'Here is your course.',
+          data: course
+        })
+      }
+    
 
 
 }
