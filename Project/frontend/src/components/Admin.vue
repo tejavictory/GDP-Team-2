@@ -13,7 +13,10 @@ import RemoveCourses from '@/components/RemoveCourses.vue'
 import RemoveUsers from '@/components/RemoveUsers.vue'
 
 export default {
-
-    name: 'Admin',
+ name: 'Admin',
+ components: {
+   AdminNav
+  }
+}
 </script>
 
