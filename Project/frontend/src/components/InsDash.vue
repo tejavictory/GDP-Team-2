@@ -21,6 +21,11 @@ export default {
         InsCourse,
         CourseModal
     },
+     mounted:function() {
+
+        this.fetchCourses()
+
+    },
     methods: {
         showModal: function() {
             $('.ui.modal').modal('show')
