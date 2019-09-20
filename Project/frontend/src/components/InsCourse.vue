@@ -2,8 +2,25 @@
     
 </template>
 
+
 <script>
+
 export default {
-    name: 'InsCourse'
+
+    name: 'InsCourse',
+
+    props: {
+
+        course: {
+
+            type: Object,
+
+            required: true
+
+        }
+
+    }    
+
 }
+
 </script>
