@@ -19,5 +19,42 @@
                 <input type="text" v-model="cname" placeholder="Course Name">
 
                 </div>
+                <div class="field">
+
+                <label>Start Date</label>
+
+                    <div class="ui calendar" id="startdate_calendar" v-on:click="startdatepick">
+
+                        <div class="ui input left icon">
+
+                            <i class="calendar icon"></i>
+
+                            <input type="text" placeholder="Start Date" v-model="cstartdate" value="August 1, 2019">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="field">
+
+                <label>End Date</label>
+
+                    <div class="ui calendar" id="enddate_calendar" v-on:click="enddatepick">
+
+                        <div class="ui input left icon">
+
+                            <i class="calendar icon"></i>
+
+                            <input type="text" placeholder="End Date"  v-model="cenddate">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
     
 </template>
