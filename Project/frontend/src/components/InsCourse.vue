@@ -24,12 +24,36 @@
 
                 </div>
 
-               
+                <div class="content">
+
+                    <label> Start Date: </label> <span>{{ course.startDate }}</span><br/>
+
+                    <label> End Date: </label> <span>{{ course.endDate }}</span><br/>
+
+                    <label> Pre-Survey Link: </label> <span>{{ course.presurveylink }}</span><br/>
+
+                    <label> Post-Survey Link: </label> <span>{{ course.postsurveylink }}</span><br/>
+
+                </div>
+
+                <div class="extra content">
+
+                    <button class="ui button fluid">Distribute Codewords</button>
+
+                </div>
+
             </div>
 
     </div> 
 
+ 
+
+    
+
 </template>
+
+ 
+
 <script>
 
 export default {
@@ -75,16 +99,3 @@ label{
 }
 
 </style>
-
-
- 
-
-    
-
-
-
- 
-
-
- 
-
