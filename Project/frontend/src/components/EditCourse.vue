@@ -75,5 +75,34 @@
                 </div>      
 
             </div>
+            <div class="fields">
+
+                <div class="field">
+
+                    <label> Add Students to the Course </label>
+
+                    <div class="ui left icon input">
+
+                        <input type="text" placeholder="Add Students..." v-model="cstudents">
+
+                        <i class="users icon"></i>
+
+                    </div>                    
+
+                </div>      
+
+ 
+
+                <div class="field">
+
+                    <label> Upload a CSV file instead </label>
+
+                    <input type="file" placeholder="File Upload">
+
+                </div>
+
+            </div>
+
+        </div>
     
 </template>
