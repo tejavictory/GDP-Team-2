@@ -28,6 +28,22 @@
             </div>
 
     </div> 
+<style scoped>
+
+
+label{
+
+    font-weight: italic;
+
+}
+
+.ui.icon.button{
+
+    float: top;
+
+}
+
+</style>
 
  
 
