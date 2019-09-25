@@ -56,5 +56,24 @@
                 </div>
 
             </div>
+            <div class="fields">
+
+                <div class="field">
+
+                <label>Pre-Survey Link</label>
+
+                <input type="text" placeholder="Pre-Survey Link" v-model="cpresurvey">
+
+                </div>
+
+                <div class="field">
+
+                <label>Post-Survey Link</label>
+
+                <input type="text" placeholder="Post-Survey Link" v-model="cpostsurvey">
+
+                </div>      
+
+            </div>
     
 </template>
