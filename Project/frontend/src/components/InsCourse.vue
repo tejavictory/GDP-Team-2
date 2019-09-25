@@ -28,28 +28,60 @@
             </div>
 
     </div> 
+
+</template>
+<script>
+
+export default {
+
+    name: 'InsCourse',
+
+    props: {
+
+        course: {
+
+            type: Object,
+
+            required: true
+
+        }
+
+    }    
+
+}
+
+</script>
+
+ 
+
 <style scoped>
 
+*{
+
+    font-family: 'Quicksand', sans-serif;
+
+}
 
 label{
 
-    font-weight: italic;
+    font-weight: bold;
 
 }
 
 .ui.icon.button{
 
-    float: top;
+    float: right;
 
 }
 
 </style>
 
+
  
 
     
 
-</template>
+
 
  
 
