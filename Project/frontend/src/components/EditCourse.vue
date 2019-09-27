@@ -104,5 +104,24 @@
             </div>
 
         </div>
+        <div class="actions">
+
+            <div class="ui black deny button">
+
+            Cancel
+
+            </div>
+
+            <div class="ui positive right labeled icon button" v-on:click="createCourse">
+
+            Done
+
+            <i class="checkmark icon"></i>
+
+            </div>
+
+        </div>
+
+    </div>
     
 </template>
