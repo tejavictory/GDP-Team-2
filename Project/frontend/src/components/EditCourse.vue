@@ -125,3 +125,32 @@
     </div>
     
 </template>
+<script>
+
+export default {
+
+    name: 'EditCourse',
+
+    data() {
+
+        return {
+
+            course: this.$store.getters.course,
+
+            cname: '',
+
+            cstartdate: '',
+
+            cenddate: '',
+
+            cpresurvey: '',
+
+            cpostsurvey: '',
+
+            cassignstat: '',
+
+            cstudents: ''
+
+        }
+
+    },
