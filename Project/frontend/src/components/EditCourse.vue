@@ -209,3 +209,20 @@ export default {
 }
 
 </script>
+<style scoped>
+
+    .ui.form{
+
+        padding: 20px;
+
+    }
+
+ 
+
+    .field{
+
+        padding: 10px;
+
+    }
+
+</style>
