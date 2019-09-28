@@ -154,3 +154,58 @@ export default {
         }
 
     },
+    methods: {
+
+        startdatepick: function () {
+
+            $('#startdate_calendar').calendar({type:'date'})
+
+        },
+
+        enddatepick: function () {
+
+            $('#enddate_calendar').calendar({type:'date'})
+
+        },
+
+        createCourse() {
+
+            axios.post('/coursecreate',{
+
+                course_name: this.cname,
+
+                startDate: this.cstartdate,
+
+                endDate: this.cenddate,
+
+                presurveylink: this.cpresurvey,
+
+                postsurveylink: this.cpostsurvey,
+
+                codewordAssignStatus: this.cassignstat
+
+            })
+
+            .then(response => {
+
+                // redirect to user home
+
+                this.$router.go()
+
+            })
+
+            .catch(error => {
+
+                // clear form inputs
+
+                this.cname = error
+
+            })            
+
+        }
+
+    }
+
+}
+
+</script>
