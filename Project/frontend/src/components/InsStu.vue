@@ -11,6 +11,46 @@
     </div>
 </template>
 <script>
+import StuCourse from './StuCourse.vue'
+export default {
+    name: 'Student',
+    data() {
+        return {
+            courses: []
+        }
+    },
+    components: {
+        StuCourse
+    },
+    mounted:function() {
+        this.fetchUserCourses()
+    },
+    methods: {
+        logout () {
+            localStorage.removeItem('tweetr-token')
+            this.$router.push('/login')
+        },
+        fetchUserCourses() {
+        //    axios.get('/usercourses?email=bdfffd@gmail.com').then(response => {
+        //         // this.$store.commit('changeCourses',response.data.data)
+        //         this.courses = response.data.data
+        //     })
+            axios.get('/usercourses', {
+            headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth-token')}`
+                    },
+             params: {
+                        email: this.$store.getters.useremail || localStorage.getItem('useremail')
+                    }
+           }).then(response => {
+                // this.$store.commit('changeCourses',response.data.data)
+                this.courses = response.data.data
+            })
+        }
+    }
+}
 </script>
+
 <style scoped>
+
 </style>
