@@ -25,3 +25,30 @@
                 </tr>
 
             </thead>
+            <tbody>
+
+                <tr v-for="item in users"
+
+                    :key="item.id"
+
+                    :user="item">
+
+                <td>{{ item.firstname + ' ' + item.lastname }}</td>
+
+                <td>{{ item.role_name }}</td>
+
+                <td>{{ item.email }}</td>
+
+                <td><button class="ui button" v-on:click="delUser"><i class="trash alternate outline icon"></i></button></td>
+
+                </tr>
+
+            </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</template>
