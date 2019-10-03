@@ -4,3 +4,21 @@
         <button class="ui button" v-on:click="getDashboard">Continue to Dashboard</button>
     </div>
 </template>
+<script>
+export default {
+    name: 'Welcome',
+    methods: {
+        getDashboard: function () {
+            switch(localStorage.getItem('role')){
+                case "Student": this.$router.push('/Student')
+                                break
+                case "Instructor": this.$router.push('/InsDash')
+                                    break
+                case "Admin": this.$router.push('/Admin')
+                                break
+                default: this.$router.push('/')
+            }
+        }
+    }
+}
+</script>
