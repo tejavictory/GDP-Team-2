@@ -7,3 +7,8 @@
     </div>
 </template>
 
+<script>
+export default {
+    name: 'CodewordSets'
+}
+</script>
