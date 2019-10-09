@@ -3,3 +3,8 @@
         
         </div>
 </template>
+<script>
+export default {
+    name: 'AdminContent'
+}
+</script>
