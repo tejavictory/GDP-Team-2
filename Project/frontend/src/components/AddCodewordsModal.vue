@@ -1,13 +1,17 @@
 <template>
     <div class="ui modal" id="createSet">
         <i class="close icon"></i>
-        <div class="header">
+        <div v-if="itemprop==null" class="header">
             Add a New Codeword Set
+        </div>
+        <div v-else class="header">
+            Cloning Codewordset
         </div>
         <div class="ui form" @submit.prevent="createSet">
             <div class="fields">
                 <div class="field">
-                    <input type="text" data-tooltip="testing" placeholder="Codeword Set Name" v-model="csname" @change="validateName()">
+                <label>Codeword Set Name</label>
+                <input type="text" data-tooltip="testing" placeholder="Codeword Set Name" v-model="csname" @change="validateName()">
                 </div>
                 <div class="field" id="nameerr">
                     <label></label>
@@ -28,19 +32,28 @@
                         <li> HARD RULE VIOLATIONS ARE INDICATED IN RED BACKGROUND. You cannot create a set unless you change these. </li>
                     </ul>
                 </div>
-            
+            </div>
+             <div class="ui stackable grid" id="grid">
+            </div>
             <div class="field">
                 <button class="ui button blue" v-on:click="addNew"><i class="plus icon"></i>New Codeword</button> 
             </div>
-         </div>
+            <div class="field" >
+                <button class="ui button fluid green" v-on:click="validateWords"><i class="check icon"></i>Validate</button> 
+            </div>
+        </div>
         <div class="actions">
-            <div class="ui black deny button">
+            <div class="ui black deny button" v-on:click="refresh()">
             Cancel
             </div>
-            
-       </div>
+            <div class="ui positive right labeled icon button" id="done" v-on:click="createSet">
+            Done
+            <i class="checkmark icon"></i>
+            </div>
+        </div>
     </div>
 </template>
+
 <script>
 export default {
     name: 'CourseModal',
@@ -79,6 +92,8 @@ export default {
                     var node = document.createElement("div");
                     node.className = "four wide column"
                     var textnode = document.createElement("input");
+                    textnode.value = this.codewords[i].codeword
+                    node.appendChild(textnode);
                     document.getElementById("grid").appendChild(node);
                 }
             })
@@ -132,6 +147,8 @@ export default {
                 word = c[i].childNodes[0].value;
                 c[i].childNodes[0].style.color = "#000000"
                 c[i].childNodes[0].style.backgroundColor = "#ffffff"
+                c[i].setAttribute("data-tooltip","")
+                c[i].setAttribute("data-variation","wide")
                 words.push(word.toUpperCase())
             }
             this.codewords = words
@@ -139,38 +156,60 @@ export default {
                 for (j = i+1; j < words.length; j++){
                     //hard rule
                     if(this.compareTwoStrings(words[i],words[j]) > 0.7){
+                        document.getElementById("grid").childNodes[i].childNodes[0].style.color = "#ffffff"
                         document.getElementById("grid").childNodes[j].childNodes[0].style.color = "#ffffff"
                         document.getElementById("grid").childNodes[i].childNodes[0].style.backgroundColor = "#ff0000"
                         document.getElementById("grid").childNodes[j].childNodes[0].style.backgroundColor = "#ff0000"
-                        document.getElementById("grid").childNodes[i].setAttribute("data-tooltip"
-                        document.getElementById("grid").childNodes[j].getAttribute("data-tooltip")+"Hard rule: Word Similarity more than 70% with "+words[i]+" ")
+                        document.getElementById("grid").childNodes[i].setAttribute("data-tooltip",
+                            document.getElementById("grid").childNodes[i].getAttribute("data-tooltip")+"Hard rule: Word Similarity more than 70% with "+words[j]+" ")
+                        document.getElementById("grid").childNodes[j].setAttribute("data-tooltip",
+                            document.getElementById("grid").childNodes[j].getAttribute("data-tooltip")+"Hard rule: Word Similarity more than 70% with "+words[i]+" ")
                         hardcount++
                         // console.log('Similar words: '+words[i]+', '+words[j])
                     }
                     //soft rule
                     else if(this.compareTwoStrings(words[i],words[j]) > 0.5){
+                        document.getElementById("grid").childNodes[i].childNodes[0].style.color = "#ff0000"
                         document.getElementById("grid").childNodes[j].childNodes[0].style.color = "#ff0000"
                         document.getElementById("grid").childNodes[i].childNodes[0].style.backgroundColor = "#ffffff"
                         document.getElementById("grid").childNodes[j].childNodes[0].style.backgroundColor = "#ffffff"  
                         document.getElementById("grid").childNodes[i].setAttribute("data-tooltip",
                             document.getElementById("grid").childNodes[i].getAttribute("data-tooltip")+"Soft rule: Tolerable word similarity with "+words[j]+" ")
                         document.getElementById("grid").childNodes[j].setAttribute("data-tooltip",
-                        
+                            document.getElementById("grid").childNodes[j].getAttribute("data-tooltip")+"Soft rule: Tolerable word similarity with "+words[i]+" ")
+                        softcount++
                     }
                     //hard rule
                     if(this.isAnagram(words[i],words[j])){
                         // console.log('Anagrams: '+words[i]+', '+words[j])
+                        document.getElementById("grid").childNodes[i].childNodes[0].style.color = "#ffffff"
                         document.getElementById("grid").childNodes[j].childNodes[0].style.color = "#ffffff"                        
                         document.getElementById("grid").childNodes[i].childNodes[0].style.backgroundColor = "#ff0000"
                         document.getElementById("grid").childNodes[j].childNodes[0].style.backgroundColor = "#ff0000"
                         document.getElementById("grid").childNodes[i].setAttribute("data-tooltip",
                             document.getElementById("grid").childNodes[i].getAttribute("data-tooltip")+"Hard rule: Anagram with "+words[j]+" ")
                         document.getElementById("grid").childNodes[j].setAttribute("data-tooltip",
-                        
+                            document.getElementById("grid").childNodes[j].getAttribute("data-tooltip")+"Hard rule: Anagram with "+words[i]+" ")
+                        hardcount++
                     }
                 }
             }
-            
+            if(softcount>0 || hardcount>0){
+                this.softcount = softcount
+                this.hardcount = hardcount
+                this.validwords = 'no'
+                $('#violations').show()
+            }
+            if(hardcount == 0){
+                this.validwords = 'yes'
+            }
+            if(this.validwords == 'yes' && this.validname == 'yes'){
+                $('#done').show()
+            }
+            else{
+                $('#done').hide()
+            }
+            console.log(words)
         },
         formatStudents: function () {
         },
@@ -214,8 +253,62 @@ export default {
                     this.csname = error
                 })
         },
-        
+        compareTwoStrings(first, second) {
+            // first = first.replace(/\s+/g, '')
+            // second = second.replace(/\s+/g, '')
+            if (!first.length && !second.length) return 1              // if both are empty strings
+            if (!first.length || !second.length) return 0              // if only one is empty string
+            if (first === second) return 1     				 // identical
+            if (first.length === 1 && second.length === 1) return 0    // both are 1-letter strings
+            if (first.length < 2 || second.length < 2) return 0			 // if either is a 1-letter string
+            let firstBigrams = new Map()
+            for (let i = 0; i < first.length - 1; i++) {
+                const bigram = first.substring(i, i + 2)
+                const count = firstBigrams.has(bigram)
+                    ? firstBigrams.get(bigram) + 1
+                    : 1
+                firstBigrams.set(bigram, count);
+            }
+            let intersectionSize = 0
+            for (let i = 0; i < second.length - 1; i++) {
+                const bigram = second.substring(i, i + 2)
+                const count = firstBigrams.has(bigram)
+                    ? firstBigrams.get(bigram)
+                    : 0
+                if (count > 0) {
+                    firstBigrams.set(bigram, count - 1)
+                    intersectionSize++
+                }
+            }
+            return (2.0 * intersectionSize) / (first.length + second.length - 2);
+        },
+        isAnagram (str1, str2) {
+            if (str1.length !== str2.length) {
+                return false;
+            }            
+            var sortStr1 = str1.split('').sort().join('')
+            var sortStr2 = str2.split('').sort().join('')
+            return (sortStr1 === sortStr2);
+        },
+        refresh () {
+            this.$router.go()
+        }
     }
 }
 </script>
 
+<style scoped>
+    .ui.form{
+        padding: 20px;
+    }
+    .field{
+        padding: 10px;
+    }
+    .ui.message{
+        background-color: rgb(252, 228, 228);
+        color: red;
+    }
+    #wordvalidate{
+        float: right;
+    }
+</style>
