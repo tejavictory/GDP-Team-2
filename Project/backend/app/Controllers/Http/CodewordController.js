@@ -20,6 +20,24 @@ class CodewordController {
         data: codeword
       })
   }
+  async getWordsSet({ request, response, params: { setname } }) {
+    const codewords = await Codeword.query().where('codewordset_name', '=', setname).fetch()
+
+    response.status(200).json({
+      message: 'Here are your codewords for the given set.',
+      data: codewords
+    })
+}
+
+  async store({ request, response }) {
+      const data = request.only(['codeword','codewordset_name'])
+      const codeword = await Codeword.create(data)
+      await codeword.save()
+      response.status(200).json({
+          message: 'Done adding codeword.',
+          data: codeword
+      })
+    }
 }
 
 module.exports = CodewordController
