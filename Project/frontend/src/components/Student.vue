@@ -31,9 +31,11 @@
 
         <div class="ui stackable four column grid">
 
-            <StuCourse/>
-
-            <StuCourse/>
+            <StuCourse
+             v-for="item in courses"
+                :key="item.id"
+                :course="item"
+            </>
 
         </div>
 
