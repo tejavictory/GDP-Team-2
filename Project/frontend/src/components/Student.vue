@@ -49,19 +49,39 @@ import StuCourse from './StuCourse.vue'
 
 export default {
 
-    name: 'Student',
-
+   name: 'Student',
+    data() {
+        return {
+            courses: [],
+        }
+    },
+    mounted:function() {
+        this.fetchUserEmail()
+        this.fetchUserCourses()
+        this.fetchReqStatus()
+    },
     components: {
-
         StuCourse
-
     },
 
     methods: {
 
         logout () {
 
-            localStorage.removeItem('tweetr-token')
+          name: 'Student',
+    data() {
+        return {
+            courses: [],
+        }
+    },
+    mounted:function() {
+        this.fetchUserEmail()
+        this.fetchUserCourses()
+        this.fetchReqStatus()
+    },
+    components: {
+        StuCourse
+    },  localStorage.removeItem('tweetr-token')
 
             this.$router.push('/login')
 
