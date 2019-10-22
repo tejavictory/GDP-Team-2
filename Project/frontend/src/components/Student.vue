@@ -114,6 +114,17 @@ export default {
                 this.courses = response.data.data
             })
         },
+        reqIns() {
+            axios.post('/reqIns', {
+            headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem('auth-token')}`
+                    },
+                    username: this.$store.getters.username || sessionStorage.getItem('username'),
+                    status: 'Pending'
+           }).then(response => {
+                this.insstat = response.data.data
+            })
+        },
 
     }
 
