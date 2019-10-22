@@ -101,6 +101,19 @@ export default {
                         this.$store.commit('changeUserEmail',response.data.data.email)
                     })
         },
+        fetchUserCourses() {
+            axios.get('/usercourses', {
+            headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem('auth-token')}`
+                    },
+             params: {
+                        email: this.$store.getters.useremail || sessionStorage.getItem('useremail')
+                    }
+           }).then(response => {
+                // this.$store.commit('changeCourses',response.data.data)
+                this.courses = response.data.data
+            })
+        },
 
     }
 
