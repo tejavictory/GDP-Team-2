@@ -85,7 +85,22 @@ export default {
 
             this.$router.push('/login')
 
-        }
+        },
+        fetchUserEmail() {
+                const token = sessionStorage.getItem('auth-token')
+                axios
+                    .get('user/me', {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    .then(response => {
+                        this.username = response.data.data.username
+                        this.email = response.data.data.email
+                        sessionStorage.setItem('username',response.data.data.username)
+                        this.$store.commit('changeUserEmail',response.data.data.email)
+                    })
+        },
 
     }
 
