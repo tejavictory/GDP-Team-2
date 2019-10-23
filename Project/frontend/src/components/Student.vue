@@ -1,74 +1,39 @@
 <template>
     <div class="ui container">
-
-        <div class="ui pointing stackable container big menu">
-
+        <div id="temp" class="ui pointing stackable container big menu">
         <div class="header item">
-
             Codeword App
-
         </div>
-
             <a class="item active" >
-
             Student Dashboard
-
             </a>
-
         <div class="right menu">
-
             <a class="item" @click="logout">
-
             Logout
-
             </a>
-
         </div>
-
         </div>
-
+        <!-- <div class="ui segment" v-if="sessionStorage.getItem('reqstat')==='Pending'">
+            Instructor Previleges Pending
+        </div> -->
+        <div>
+            <button class="ui button blue" v-on:click="reqIns">Request Instructor Previleges</button>
+        </div>
         <p> Student Dashboard Construction in progress... </p>
-
         <div class="ui stackable four column grid">
-
             <StuCourse
-             v-for="item in courses"
+                v-for="item in courses"
                 :key="item.id"
                 :course="item"
-            </>
-
+                />
         </div>
-
     </div>
 </template>
+
 <script>
-
 import StuCourse from './StuCourse.vue'
-
- 
-
 export default {
-
-   name: 'Student',
-    data() {
-        return {
-            courses: []
-        }
-    },
-    mounted:function() {
-        this.fetchUserEmail()
-        this.fetchUserCourses()
-        this.fetchReqStatus()
-    },
-    components: {
-        StuCourse
-    },
-
-    methods: {
-
-        logout () {
-
-          name: 'Student',
+    name: 'Student',
     data() {
         return {
             courses: [],
@@ -81,10 +46,11 @@ export default {
     },
     components: {
         StuCourse
-    },  localStorage.removeItem('tweetr-token')
-
+    },
+    methods: {
+        logout() {
+            sessionStorage.removeItem('auth-token')
             this.$router.push('/login')
-
         },
         fetchUserEmail() {
                 const token = sessionStorage.getItem('auth-token')
@@ -125,17 +91,31 @@ export default {
                 this.insstat = response.data.data
             })
         },
-
+        fetchReqStatus() {
+            try{
+            axios.get('/getreqstat/'+sessionStorage.getItem('username'), {
+            headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem('auth-token')}`
+                    }
+           }).then(response => {
+                this.reqstat = response.data.status
+                sessionStorage.setItem('reqstat',response.data.status)
+            })
+            }
+            catch(error){
+                sessionStorage.setItem('reqstat','error')
+            }
+        }
     }
-
 }
-
 </script>
 
- 
-
 <style scoped>
-
- 
-
+.header.item{
+  background-color: rgb(16, 56, 104);
+  color: white;
+}
+#temp{
+  background-color:#97CAEF
+}
 </style>
