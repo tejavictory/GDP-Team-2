@@ -52,7 +52,7 @@ export default {
    name: 'Student',
     data() {
         return {
-            courses: [],
+            courses: []
         }
     },
     mounted:function() {
