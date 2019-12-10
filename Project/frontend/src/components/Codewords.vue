@@ -9,9 +9,11 @@ export default {
     name: 'Codewords',
     data () {
         return {
+
         }
     },
     components: {
+
     },
     methods: {
         getcodes: function() {

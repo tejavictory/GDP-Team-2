@@ -13,9 +13,14 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 // const Factory = use('Factory')
+// const Hash = use('Hash')
 
-// Factory.blueprint('App/Models/User', (faker) => {
+// Factory.blueprint('App/Models/User', async (faker) => {
 //   return {
-//     username: faker.username()
+//     username: faker.username(),
+//     email: faker.email(),
+//     password: "amazon",
+//     firstname: faker.username(),
+//     lastname: faker.username(),
 //   }
 // })

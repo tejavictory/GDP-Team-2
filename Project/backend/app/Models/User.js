@@ -34,6 +34,26 @@ class User extends Model {
   tokens () {
     return this.hasMany('App/Models/Token')
   }
+
+  static get primaryKey () {
+    return 'email'
+  }
+
+  codewords () {
+    
+  }
+
+  codewordsets () {
+
+  }
+
+  insrequests() {
+    return this.hasOne('App/Models/Insrequest')
+  }
+
+  courses () {
+    return this.belongsToMany('App/Models/Course','email','course_id').pivotTable('user_course')
+  }
 }
 
 module.exports = User

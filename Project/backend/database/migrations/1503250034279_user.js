@@ -13,10 +13,10 @@ class UserSchema extends Schema {
       table.string('firstname').notNullable()
       table.string('lastname').notNullable()
       table.string('role_name',20).notNullable()
+      table.boolean('activated').notNullable().default('false')
       table.timestamps()
     })
   }
-
 
   down () {
     this.drop('users')

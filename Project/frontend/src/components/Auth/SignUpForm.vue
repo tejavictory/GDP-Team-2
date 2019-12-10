@@ -1,6 +1,8 @@
 <template>
   <div class="ui stackable three column centered grid container">
     <div class="column">
+          <br/>
+
       <h2 class="ui dividing header">Sign Up, it's free!</h2>
 
       <Notification :message="notification.message" :type="notification.type" v-if="notification.message" />
@@ -18,12 +20,12 @@
           <span v-show="errors.has('lastname')" class="is-danger">{{ errors.first('Last Name') }}</span>
         </div>
 
-        <div class="field" :class="{ error: errors.has('username') }">
+        <!-- <div class="field" :class="{ error: errors.has('username') }">
           <label>Username</label>
           <input type="text" name="username" :class="{'input': true, 'is-danger': errors.has('username') }" v-model="username" v-validate="'required'"
             placeholder="Username">
           <span v-show="errors.has('username')" class="is-danger">{{ errors.first('username') }}</span>
-        </div>
+        </div> -->
 
         <div class="field" :class="{ error: errors.has('email') }">
           <label>Email</label>
@@ -60,6 +62,7 @@
 
 <script>
 import Notification from '@/components/Notification'
+
 export default {
   name: 'SignUpForm',
   components: {
@@ -75,7 +78,8 @@ export default {
       notification: {
         message: '',
         type: ''
-      }
+      },
+      usertoken: ''
     }
   },
   computed: {
@@ -84,7 +88,7 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    const token = localStorage.getItem('auth-token')
+    const token = sessionStorage.getItem('auth-token')
     return token ? next('/') : next()
   },
   methods: {
@@ -93,21 +97,39 @@ export default {
         .post('/signup', {
           firstname: this.firstname,
           lastname: this.lastname,
-          username: this.username,
+          username: this.email.split('@')[0],
           email: this.email,
-          password: this.password
+          password: this.password,
+          role_name: 'Student'
         })
         .then(response => {
-          // save token in localstorage
-          localStorage.setItem('auth-token', response.data.data.token)
+          // save token in sessionStorage
+          this.usertoken = response.data.data.token
+          console.log(sessionStorage.getItem('authtoken'))
+                      axios.post('/confirmEmail/'+this.email, {
+                      // headers: {
+                      //             Authorization: `Bearer ${sessionStorage.getItem('auth-token')}`
+                      //         },
+                              usertoken: this.usertoken
+                        }).then(response => {
+                          console.log('Confirmation email sent.')
+                          $('body')
+                            .toast({
+                                  displayTime: 5000,
+                                  class: 'success',
+                              message: 'Confirmation link sent to email.'
+                            })
+                          ;
+                      })
+          // sessionStorage.setItem('auth-token', response.data.data.token)
           // redirect to user home
           this.$router.push('/')
         })
         .catch(error => {
           // display error notification
           this.notification = Object.assign({}, this.notification, {
-            message: error.response.data.message,
-            type: error.response.data.status
+            message: "Error signing up.",
+            type: "Signup error"
           })
         })
     }

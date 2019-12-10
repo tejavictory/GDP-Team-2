@@ -1,6 +1,8 @@
 <template>
   <div class="ui stackable three column centered grid container">
     <div class="column">
+          <br/>
+
       <h2 class="ui dividing header">Log In</h2>
 
       <Notification
@@ -8,7 +10,6 @@
         :type="notification.type"
         v-if="notification.message"
       />
-
       <form class="ui form" @submit.prevent="login">
         <div class="field">
           <label>Email</label>
@@ -44,6 +45,7 @@
 
 <script>
     import Notification from '@/components/Notification'
+
     export default {
         name: 'LogInForm',
         components: {
@@ -56,11 +58,13 @@
                 notification: {
                     message: '',
                     type: ''
-                }
+                },
+                role: ''
             }
         },
         beforeRouteEnter (to, from, next) {
-            const token = localStorage.getItem('auth-token')
+            const token = sessionStorage.getItem('auth-token')
+
             return token ? next('/') : next()
         },
         methods: {
@@ -71,21 +75,76 @@
                         password: this.password,
                     })
                     .then(response => {
-                        // save token in localstorage
-                        localStorage.setItem('auth-token', response.data.data.token)
-                        // redirect to user home
-                        this.$router.push('/')
+                      if(response.data.status == 'mail not confirmed'){
+                          $('body')
+                            .toast({
+                              displayTime: 5000,
+                              class: 'error',
+                              message: 'Please confirm your email'
+                            })
+                          ;
+                          return
+                      }
+                        // save token in sessionStorage
+                        sessionStorage.setItem('auth-token', response.data.data.token)
+                        this.$store.commit('changeUserEmail',this.email)
+                        this.fetchAuthenticatedUser()
+                        this.getRole()
+                        // this.$router.push('/welcome')
                     })
                     .catch(error => {
                         // clear form inputs
                         this.email = this.password = ''
+
                         // display error notification
                         this.notification = Object.assign({}, this.notification, {
-                            message: error.response.data.message,
-                            type: error.response.data.status
+                            message: "Invalid Login Credentials",
+                            type: "Login Error"
                         })
+                    })
+            },
+            fetchAuthenticatedUser () {
+                const token = sessionStorage.getItem('auth-token')
+
+                axios
+                    .get('user/me', {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    .then(response => {
+                        this.email = response.data.data.email
+                        this.$store.commit('changeUserEmail',response.data.data.email)
+                        this.$store.commit('changeUser',response.data.data)
+                    })
+            },
+            getRole () {
+                const token = sessionStorage.getItem('auth-token')
+
+                axios
+                    .get('user/me', {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    .then(response => {
+                        this.role = response.data.data.role_name
+                        this.$store.commit('changeUserRole',response.data.data.role_name)
+                                switch(this.role){
+                                    case "Student": this.$router.push('/Student')
+                                                    break
+                                    case "Instructor": this.$router.push('/InsDash')
+                                                        break
+                                    case "Admin": this.$router.push('/Admin')
+                                                    break
+                                    default: this.$router.push('/')
+
+                                }
                     })
             }
         }
     }
 </script>
+
+<style scoped>
+</style>

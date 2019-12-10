@@ -4,7 +4,12 @@
 const Model = use('Model')
 
 class Codeword extends Model {
-codewordset() {
+
+    // static get primaryKey () {
+    //     return 'codeword'
+    //   }
+
+    codewordset() {
         this.belongsTo('App/Models/Codewordset')
     }
 }

@@ -14,6 +14,7 @@ class TokensSchema extends Schema {
       table.timestamps()
     })
   }
+
   down () {
     this.drop('tokens')
   }
