@@ -8,3 +8,7 @@ This repository is for GDP-I.
 - Preetham Potu
 - Mushafiq Fakki
 - Karthik Reddy Muthyala
+
+# Deployed Link
+
+http://objective-colden-380a8f.netlify.com/
